@@ -101,125 +101,100 @@ img { display: block; max-width: 100%; }
 /*  1. HERO                                            */
 /* ─────────────────────────────────────────────────── */
 #hero {
-  min-height: 720px;
   background: #0F0F12;
-  position: relative; overflow: hidden;
-  display: flex; align-items: flex-end;
+  position: relative;
+  overflow: hidden;
+  /* MOBILE: 2-column grid — text left, photo right */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  align-items: start;
   padding: 0;
+  min-height: 0;
 }
 #hero .bg-gradient {
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 75% 50%, rgba(77,124,254,0.13) 0%, transparent 55%),
+  background: radial-gradient(ellipse at 75% 40%, rgba(77,124,254,0.13) 0%, transparent 55%),
               radial-gradient(ellipse at 15% 85%, rgba(47,93,255,0.08) 0%, transparent 55%);
   pointer-events: none; z-index: 0;
+  grid-column: 1 / -1;
+  grid-row: 1;
 }
 
-/* Photo column — mobile: full-width strip at top */
+/* TEXT — left column */
+#hero .hero-inner {
+  grid-column: 1;
+  grid-row: 1;
+  position: relative; z-index: 5;
+  padding: 52px 0 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* PHOTO — right column */
 .hero-photo-col {
-  position: absolute;
-  right: 0; top: 0; bottom: 0;
-  width: 52%;
-  z-index: 1;
-  pointer-events: none;
+  grid-column: 2;
+  grid-row: 1;
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  overflow: hidden;
+  /* match text column height */
+  align-self: stretch;
+  min-height: 340px;
 }
 .hero-photo-col img {
-  width: auto;
-  max-width: 100%;
-  height: 95%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   object-position: bottom center;
   display: block;
-  /* cold tint to match dark theme */
-  filter: drop-shadow(0 0 40px rgba(77,124,254,0.25)) drop-shadow(0 20px 60px rgba(0,0,0,0.7));
+  filter: drop-shadow(0 0 30px rgba(77,124,254,0.3))
+          drop-shadow(0 10px 40px rgba(0,0,0,0.8));
 }
-/* no ::before gradient needed — PNG is transparent */
-.hero-photo-col::before { display: none; }
-/* subtle bottom fade to blend feet/base into background */
 .hero-photo-col::after {
   content: '';
-  position: absolute; left:0; right:0; bottom:0; height: 120px;
+  position: absolute; left:0; right:0; bottom:0;
+  height: 80px;
   background: linear-gradient(to top, #0F0F12 0%, transparent 100%);
   z-index: 3;
 }
-/* cold light effect on photo */
 .hero-photo-glow {
   position: absolute; top: 0; right: 0;
-  width: 100%; height: 60%;
-  background: radial-gradient(ellipse at 70% 10%, rgba(77,124,254,0.15) 0%, transparent 65%);
+  width: 100%; height: 50%;
+  background: radial-gradient(ellipse at 80% 10%, rgba(77,124,254,0.18) 0%, transparent 65%);
   z-index: 4; pointer-events: none;
 }
 
-/* Text column */
-#hero .hero-inner {
+/* PRICE + BUTTON — span both columns below */
+.hero-bottom {
+  grid-column: 1 / -1;
+  grid-row: 2;
   position: relative; z-index: 5;
-  width: 100%;
-  padding: 70px 20px 56px;
-  max-width: 560px;
-}
-
-/* Mobile: photo at top-right, aligned with title */
-@media (max-width: 767px) {
-  #hero {
-    flex-direction: column;
-    align-items: stretch;
-    min-height: 720px;
-  }
-  .hero-photo-col {
-    position: absolute;
-    right: 0;
-    top: 40px;        /* same level as title starts */
-    bottom: auto;
-    width: 48%;
-    height: 340px;    /* covers title + subtitle zone */
-    align-items: flex-start;
-    justify-content: flex-end;
-    opacity: 1;
-  }
-  .hero-photo-col img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: top right;
-    filter: drop-shadow(0 0 20px rgba(77,124,254,0.25)) drop-shadow(0 8px 30px rgba(0,0,0,0.7));
-  }
-  .hero-photo-col::after {
-    height: 80px;
-    background: linear-gradient(to top, #0F0F12 0%, transparent 100%);
-  }
-  /* text takes left half, photo on right */
-  #hero .hero-inner {
-    padding: 50px 20px 56px;
-    /* push text to left, leave space for photo */
-    width: 100%;
-  }
-  /* title and subtitle only take left ~50% so photo shows right */
-  .hero-title  { max-width: 52%; }
-  .hero-sub    { max-width: 58%; }
-  /* price and button go full width below */
-  .hero-price  { max-width: 100%; }
+  padding: 0 20px 48px;
 }
 
 .hero-title {
-  font-size: 34px; font-weight: 800;
+  font-size: 30px; font-weight: 800;
   line-height: 1.1;
   color: #4D7CFE;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 .hero-sub {
-  font-size: 18px; font-weight: 500;
+  font-size: 15px; font-weight: 500;
   color: #EAEAEA; opacity: 0.9;
-  line-height: 1.45;
-  margin-bottom: 28px;
+  line-height: 1.4;
+  margin-bottom: 0;
 }
 .hero-price {
   display: flex; align-items: baseline; gap: 12px;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
-.price-main { font-size: 32px; font-weight: 800; color: #fff; }
-.price-old  { font-size: 18px; color: #EAEAEA; opacity: 0.4; text-decoration: line-through; }
+.price-main { font-size: 30px; font-weight: 800; color: #fff; }
+.price-old  { font-size: 16px; color: #EAEAEA; opacity: 0.4; text-decoration: line-through; }
 
 /* ─────────────────────────────────────────────────── */
 /*  2. PAIN BLOCK                                      */
@@ -439,23 +414,40 @@ footer a { color: #4D7CFE; }
 @media (min-width: 768px) {
   .section { padding: 120px 40px; }
 
-  /* Hero */
-  #hero { min-height: 820px; align-items: stretch; flex-direction: row; }
-  #hero .hero-inner {
-    max-width: 50%; padding: 100px 0 80px 60px;
-    display: flex; flex-direction: column; justify-content: center;
+  /* Hero — desktop: classic split, photo absolute right */
+  #hero {
+    display: flex;
+    align-items: center;
+    min-height: 820px;
+    position: relative;
   }
+  #hero .hero-inner {
+    max-width: 50%;
+    padding: 100px 0 80px 60px;
+    display: flex; flex-direction: column; justify-content: center;
+    align-items: flex-start;
+  }
+  .hero-bottom {
+    display: none; /* price+button inside hero-inner on desktop */
+  }
+  .hero-inner .hero-price,
+  .hero-inner .btn-desktop,
+  .hero-inner .hero-note { display: flex; }
   .hero-photo-col {
-    position: absolute; width: 52%; right: 0; top: 0; bottom: 0; height: 100%;
-    align-items: flex-end;
-    opacity: 1;
+    position: absolute;
+    grid-column: unset;
+    right: 0; top: 0; bottom: 0;
+    width: 52%; min-height: 100%;
   }
   .hero-photo-col img {
-    height: 100%;
-    filter: drop-shadow(0 0 50px rgba(77,124,254,0.3)) drop-shadow(0 30px 80px rgba(0,0,0,0.6));
+    width: 100%; height: 100%;
+    object-fit: contain;
+    object-position: bottom right;
+    filter: drop-shadow(0 0 50px rgba(77,124,254,0.3))
+            drop-shadow(0 30px 80px rgba(0,0,0,0.6));
   }
   .hero-title { font-size: 64px; line-height: 1.05; }
-  .hero-sub   { font-size: 28px; }
+  .hero-sub   { font-size: 28px; margin-bottom: 28px; }
   .price-main { font-size: 40px; }
   .price-old  { font-size: 22px; }
   .btn { font-size: 20px; }
@@ -496,7 +488,12 @@ footer a { color: #4D7CFE; }
 @media (max-width: 767px) {
   body { padding-bottom: 70px; }
   .btn-desktop { max-width: 100%; }
+  .desktop-only { display: none !important; }
 }
+@media (min-width: 768px) {
+  .mobile-only { display: none !important; }
+}
+.hero-note { margin-top: 14px; font-size: 12px; color: #444455; }
 </style>
 </head>
 <body>
@@ -505,13 +502,7 @@ footer a { color: #4D7CFE; }
 <section id="hero">
   <div class="bg-gradient"></div>
 
-  <!-- PHOTO RIGHT COLUMN -->
-  <div class="hero-photo-col">
-    <img src="photo.png" alt="Автор курсу" loading="eager">
-    <div class="hero-photo-glow"></div>
-  </div>
-
-  <!-- TEXT LEFT COLUMN -->
+  <!-- TEXT — left column (mobile) / left half (desktop) -->
   <div class="hero-inner">
     <div class="s-label anim-up d1">💰 Міні-курс · Доступ одразу</div>
     <h1 class="hero-title anim-up d1">ГРОШІ<br>НА СТІЛ</h1>
@@ -519,17 +510,39 @@ footer a { color: #4D7CFE; }
       Як отримати підвищення,<br>
       працюючи головою, а не 24/7
     </p>
+    <!-- shown only on desktop -->
+    <div class="hero-price anim-up d3 desktop-only">
+      <span class="price-main">599 грн</span>
+      <span class="price-old">4 197 грн</span>
+    </div>
+    <a href="https://wayforpay.com" class="btn btn-desktop anim-up d3 desktop-only">
+      Купити за 599 грн →
+    </a>
+    <p class="hero-note anim-up d4 desktop-only">
+      🔒 WayForPay · Доступ в Telegram-бот одразу після оплати
+    </p>
+  </div>
+
+  <!-- PHOTO — right column (mobile) / right half (desktop) -->
+  <div class="hero-photo-col">
+    <img src="photo.png" alt="Автор курсу" loading="eager">
+    <div class="hero-photo-glow"></div>
+  </div>
+
+  <!-- PRICE + BUTTON — full width below on mobile only -->
+  <div class="hero-bottom mobile-only">
     <div class="hero-price anim-up d3">
       <span class="price-main">599 грн</span>
       <span class="price-old">4 197 грн</span>
     </div>
-    <a href="https://wayforpay.com" class="btn btn-desktop anim-up d3">
+    <a href="https://wayforpay.com" class="btn anim-up d3">
       Купити за 599 грн →
     </a>
-    <p style="margin-top:14px; font-size:12px; color:#444455;" class="anim-up d4">
+    <p style="margin-top:12px; font-size:12px; color:#444455;">
       🔒 WayForPay · Доступ в Telegram-бот одразу після оплати
     </p>
   </div>
+
 </section>
 
 <!-- ═══════════════════════ 2. PAIN ═══════════════════════ -->
