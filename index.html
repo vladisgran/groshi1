@@ -155,12 +155,18 @@ img { display: block; max-width: 100%; }
   filter: drop-shadow(0 0 30px rgba(77,124,254,0.3))
           drop-shadow(0 10px 40px rgba(0,0,0,0.8));
 }
-.hero-photo-col::after {
-  content: '';
-  position: absolute; left:0; right:0; bottom:0;
-  height: 80px;
-  background: linear-gradient(to top, #0F0F12 0%, transparent 100%);
-  z-index: 3;
+.hero-photo-col::after { display: none; }
+
+/* fade bottom + left via CSS mask directly on the column */
+.hero-photo-col {
+  -webkit-mask-image:
+    linear-gradient(to top,  transparent 0%, black 18%),
+    linear-gradient(to right, transparent 0%, black 22%);
+  -webkit-mask-composite: destination-in;
+  mask-image:
+    linear-gradient(to top,  transparent 0%, black 18%),
+    linear-gradient(to right, transparent 0%, black 22%);
+  mask-composite: intersect;
 }
 .hero-photo-glow {
   position: absolute; top: 0; right: 0;
