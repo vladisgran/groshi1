@@ -160,21 +160,46 @@ img { display: block; max-width: 100%; }
   max-width: 560px;
 }
 
-/* Mobile: photo floats right, text fills left */
+/* Mobile: photo at top-right, aligned with title */
 @media (max-width: 767px) {
-  #hero { flex-direction: column; align-items: stretch; min-height: 720px; }
+  #hero {
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 720px;
+  }
   .hero-photo-col {
     position: absolute;
-    right: -10px; bottom: 0; top: auto;
-    width: 55%; height: 75%;
-    align-items: flex-end;
-    opacity: 0.55;
+    right: 0;
+    top: 40px;        /* same level as title starts */
+    bottom: auto;
+    width: 48%;
+    height: 340px;    /* covers title + subtitle zone */
+    align-items: flex-start;
+    justify-content: flex-end;
+    opacity: 1;
   }
   .hero-photo-col img {
+    width: 100%;
     height: 100%;
-    filter: drop-shadow(0 0 24px rgba(77,124,254,0.2)) drop-shadow(0 10px 40px rgba(0,0,0,0.8));
+    object-fit: contain;
+    object-position: top right;
+    filter: drop-shadow(0 0 20px rgba(77,124,254,0.25)) drop-shadow(0 8px 30px rgba(0,0,0,0.7));
   }
-  #hero .hero-inner { padding: 60px 20px 56px; }
+  .hero-photo-col::after {
+    height: 80px;
+    background: linear-gradient(to top, #0F0F12 0%, transparent 100%);
+  }
+  /* text takes left half, photo on right */
+  #hero .hero-inner {
+    padding: 50px 20px 56px;
+    /* push text to left, leave space for photo */
+    width: 100%;
+  }
+  /* title and subtitle only take left ~50% so photo shows right */
+  .hero-title  { max-width: 52%; }
+  .hero-sub    { max-width: 58%; }
+  /* price and button go full width below */
+  .hero-price  { max-width: 100%; }
 }
 
 .hero-title {
