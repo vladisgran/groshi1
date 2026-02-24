@@ -104,19 +104,79 @@ img { display: block; max-width: 100%; }
   min-height: 720px;
   background: #0F0F12;
   position: relative; overflow: hidden;
-  display: flex; align-items: center;
-  padding: 60px 20px;
+  display: flex; align-items: flex-end;
+  padding: 0;
 }
 #hero .bg-gradient {
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 70% 40%, rgba(77,124,254,0.12) 0%, transparent 65%),
-              radial-gradient(ellipse at 20% 80%, rgba(47,93,255,0.07) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 75% 50%, rgba(77,124,254,0.13) 0%, transparent 55%),
+              radial-gradient(ellipse at 15% 85%, rgba(47,93,255,0.08) 0%, transparent 55%);
+  pointer-events: none; z-index: 0;
+}
+
+/* Photo column — mobile: full-width strip at top */
+.hero-photo-col {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 52%;
+  z-index: 1;
   pointer-events: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
+.hero-photo-col img {
+  width: auto;
+  max-width: 100%;
+  height: 95%;
+  object-fit: contain;
+  object-position: bottom center;
+  display: block;
+  /* cold tint to match dark theme */
+  filter: drop-shadow(0 0 40px rgba(77,124,254,0.25)) drop-shadow(0 20px 60px rgba(0,0,0,0.7));
+}
+/* no ::before gradient needed — PNG is transparent */
+.hero-photo-col::before { display: none; }
+/* subtle bottom fade to blend feet/base into background */
+.hero-photo-col::after {
+  content: '';
+  position: absolute; left:0; right:0; bottom:0; height: 120px;
+  background: linear-gradient(to top, #0F0F12 0%, transparent 100%);
+  z-index: 3;
+}
+/* cold light effect on photo */
+.hero-photo-glow {
+  position: absolute; top: 0; right: 0;
+  width: 100%; height: 60%;
+  background: radial-gradient(ellipse at 70% 10%, rgba(77,124,254,0.15) 0%, transparent 65%);
+  z-index: 4; pointer-events: none;
+}
+
+/* Text column */
 #hero .hero-inner {
-  position: relative; z-index: 2;
-  width: 100%; max-width: 600px;
+  position: relative; z-index: 5;
+  width: 100%;
+  padding: 70px 20px 56px;
+  max-width: 560px;
 }
+
+/* Mobile: photo floats right, text fills left */
+@media (max-width: 767px) {
+  #hero { flex-direction: column; align-items: stretch; min-height: 720px; }
+  .hero-photo-col {
+    position: absolute;
+    right: -10px; bottom: 0; top: auto;
+    width: 55%; height: 75%;
+    align-items: flex-end;
+    opacity: 0.55;
+  }
+  .hero-photo-col img {
+    height: 100%;
+    filter: drop-shadow(0 0 24px rgba(77,124,254,0.2)) drop-shadow(0 10px 40px rgba(0,0,0,0.8));
+  }
+  #hero .hero-inner { padding: 60px 20px 56px; }
+}
+
 .hero-title {
   font-size: 34px; font-weight: 800;
   line-height: 1.1;
@@ -355,23 +415,26 @@ footer a { color: #4D7CFE; }
   .section { padding: 120px 40px; }
 
   /* Hero */
-  #hero { min-height: 820px; padding: 60px 40px; align-items: center; }
-  #hero .hero-inner { max-width: 560px; }
+  #hero { min-height: 820px; align-items: stretch; flex-direction: row; }
+  #hero .hero-inner {
+    max-width: 50%; padding: 100px 0 80px 60px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .hero-photo-col {
+    position: absolute; width: 52%; right: 0; top: 0; bottom: 0; height: 100%;
+    align-items: flex-end;
+    opacity: 1;
+  }
+  .hero-photo-col img {
+    height: 100%;
+    filter: drop-shadow(0 0 50px rgba(77,124,254,0.3)) drop-shadow(0 30px 80px rgba(0,0,0,0.6));
+  }
   .hero-title { font-size: 64px; line-height: 1.05; }
   .hero-sub   { font-size: 28px; }
   .price-main { font-size: 40px; }
   .price-old  { font-size: 22px; }
   .btn { font-size: 20px; }
   .btn-desktop { width: 340px; }
-
-  /* Hero photo overlay (pseudo element) */
-  #hero::after {
-    content: '👤';
-    position: absolute; right: 6%; bottom: 0;
-    font-size: 380px; line-height: 1;
-    opacity: 0.04; pointer-events: none;
-    z-index: 1;
-  }
 
   /* Pain */
   .pain-title { font-size: 42px; }
@@ -416,6 +479,14 @@ footer a { color: #4D7CFE; }
 <!-- ═══════════════════════ 1. HERO ═══════════════════════ -->
 <section id="hero">
   <div class="bg-gradient"></div>
+
+  <!-- PHOTO RIGHT COLUMN -->
+  <div class="hero-photo-col">
+    <img src="photo.png" alt="Автор курсу" loading="eager">
+    <div class="hero-photo-glow"></div>
+  </div>
+
+  <!-- TEXT LEFT COLUMN -->
   <div class="hero-inner">
     <div class="s-label anim-up d1">💰 Міні-курс · Доступ одразу</div>
     <h1 class="hero-title anim-up d1">ГРОШІ<br>НА СТІЛ</h1>
