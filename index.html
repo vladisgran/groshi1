@@ -560,7 +560,7 @@ footer a { color: #4D7CFE; }
     <p style="margin-top:12px; font-size:12px; color:#444455;">
       🔒 WayForPay · Доступ в Telegram-бот одразу після оплати
     </p>
-    <p class="legal-note" style="text-align:left;">Натискаючи на кнопку, ви погоджуєтесь з умовами <a href="#" class="legal-link">Публічної оферти</a> та <a href="#" class="legal-link">Політики конфіденційності</a>.</p>
+    <p class="legal-note" style="text-align:left;">Натискаючи на кнопку, ви погоджуєтесь з умовами <a href="#" class="legal-link" onclick="openOffer(event)">Публічної оферти</a> та <a href="#" class="legal-link">Політики конфіденційності</a>.</p>
   </div>
 
 </section>
@@ -855,7 +855,7 @@ footer a { color: #4D7CFE; }
           💳 Купити зараз
         </a>
         <p class="offer-note">🔒 Безпечна оплата · WayForPay</p>
-        <p class="legal-note">Натискаючи на кнопку, ви погоджуєтесь з умовами <a href="#" class="legal-link">Публічної оферти</a> та <a href="#" class="legal-link">Політики конфіденційності</a>.</p>
+        <p class="legal-note">Натискаючи на кнопку, ви погоджуєтесь з умовами <a href="#" class="legal-link" onclick="openOffer(event)">Публічної оферти</a> та <a href="#" class="legal-link">Політики конфіденційності</a>.</p>
       </div>
     </div>
   </div>
@@ -919,7 +919,7 @@ footer a { color: #4D7CFE; }
         🚀 Купити зараз за 599 грн
       </a>
       <p style="font-size:12px; color:#444455; text-align:center;">🔒 WayForPay · Миттєвий доступ в Telegram</p>
-      <p class="legal-note" style="text-align:center;">Натискаючи на кнопку, ви погоджуєтесь з умовами <a href="#" class="legal-link">Публічної оферти</a> та <a href="#" class="legal-link">Політики конфіденційності</a>.</p>
+      <p class="legal-note" style="text-align:center;">Натискаючи на кнопку, ви погоджуєтесь з умовами <a href="#" class="legal-link" onclick="openOffer(event)">Публічної оферти</a> та <a href="#" class="legal-link">Політики конфіденційності</a>.</p>
     </div>
   </div>
 </section>
@@ -928,7 +928,7 @@ footer a { color: #4D7CFE; }
 <footer>
   <p>© 2025 Гроші на стіл. Всі права захищено.</p>
   <p style="margin-top:6px;">
-    <a href="#">Публічна оферта</a> &nbsp;·&nbsp;
+    <a href="#" onclick="openOffer(event)">Публічна оферта</a> &nbsp;·&nbsp;
     <a href="#">Конфіденційність</a>
   </p>
 </footer>
@@ -1099,7 +1099,7 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
       </button>
       <p class="legal-note" style="text-align:center; margin-top:10px;">
         Натискаючи на кнопку, ви погоджуєтесь з умовами
-        <a href="#" class="legal-link">Публічної оферти</a> та
+        <a href="#" class="legal-link" onclick="openOffer(event)">Публічної оферти</a> та
         <a href="#" class="legal-link">Політики конфіденційності</a>.
       </p>
     </form>
@@ -1292,6 +1292,120 @@ function submitOrder(e) {
   // Open WayForPay with data
   window.location.href = WAYFORPAY_URL + '?' + params.toString();
 }
+</script>
+
+<!-- ═══════════════════════ OFFER MODAL ═══════════════════════ -->
+<div id="offer-modal" style="display:none;" aria-modal="true" role="dialog">
+  <div class="modal-overlay" onclick="closeOffer()"></div>
+  <div class="modal-box offer-modal-box">
+
+    <button class="modal-close" onclick="closeOffer()" aria-label="Закрити">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+
+    <h3 class="modal-title" style="margin-bottom:4px;">Публічна оферта</h3>
+    <p class="modal-sub" style="margin-bottom:20px;">Договір про надання послуг з доступу до онлайн-курсу</p>
+
+    <div class="offer-doc-body">
+
+      <div class="offer-doc-section">
+        <p class="offer-doc-num">1. ЗАГАЛЬНІ ПОЛОЖЕННЯ ТА АКЦЕПТ</p>
+        <p class="offer-doc-text">1.1. Цей Договір є публічною офертою (пропозицією) Виконавця у розумінні ст. 641 та 644 ЦК України.</p>
+        <p class="offer-doc-text">1.2. Акцептом (прийняттям) умов даного Договору є здійснення Замовником повної або часткової оплати за Курс. З цього моменту Договір вважається укладеним, а Замовник - таким, що ознайомився та погодився з усіма його умовами.</p>
+        <p class="offer-doc-text">1.3. Об'єктом договору є надання доступу до цифрового контенту (інформаційних матеріалів), що не постачається на матеріальному носії.</p>
+      </div>
+
+      <div class="offer-doc-section">
+        <p class="offer-doc-num">2. ПОРЯДОК НАДАННЯ ПОСЛУГ ТА ВІДМОВА ВІД ПОВЕРНЕННЯ КОШТІВ</p>
+        <p class="offer-doc-text">2.1. Послуга вважається наданою в повному обсязі в момент надання Замовнику доступу до матеріалів Курсу (посилання на відео, тексти, вебінари).</p>
+        <p class="offer-doc-text">2.2. Відповідно до ст. 13 Закону України «Про захист прав споживачів», споживач не має права на відкликання договору, якщо надання послуг (доступу до цифрового контенту) розпочалося за його згодою.</p>
+        <p class="offer-doc-text">2.3. Грошові кошти за Курс не підлягають поверненню, оскільки специфіка Інформаційного продукту передбачає отримання повної цінності інтелектуальної власності в момент отримання доступу.</p>
+      </div>
+
+      <div class="offer-doc-section">
+        <p class="offer-doc-num">3. ВІДМОВА ВІД ГАРАНТІЙ ТА ВІДПОВІДАЛЬНОСТІ ЗА РЕЗУЛЬТАТ</p>
+        <p class="offer-doc-text">3.1. Виконавець надає інформацію за принципом «як є». Всі матеріали є авторським суб'єктивним баченням і не є фінансовою консультацією чи гарантією прибутку.</p>
+        <p class="offer-doc-text">3.2. Виконавець не несе відповідальності за дії або бездіяльність Замовника, а також за будь-які прямі чи опосередковані фінансові втрати, пов'язані з використанням інформації з Курсу. Результат навчання повністю залежить від вольових зусиль та навичок самого Замовника.</p>
+      </div>
+
+      <div class="offer-doc-section">
+        <p class="offer-doc-num">4. ЗАХИСТ ДІЛОВОЇ РЕПУТАЦІЇ ТА ВІДПОВІДАЛЬНІСТЬ</p>
+        <p class="offer-doc-text">4.1. Сторони визнають, що ділова репутація Виконавця є його нематеріальним активом. Замовник зобов'язується дотримуватися етики ділового спілкування.</p>
+        <p class="offer-doc-text">4.2. Замовник бере на себе зобов'язання не поширювати у будь-якій формі (соціальні мережі, месенджери, ЗМІ, відгуки на сторонніх ресурсах) недостовірну, упереджену або таку, що ганьбить честь, гідність та ділову репутацію автора, інформацію про Курс та Виконавця.</p>
+        <p class="offer-doc-text">4.3. У разі порушення п. 4.2., Замовник зобов'язується сплатити Виконавцю штраф у розмірі 80 000 (вісімдесят тисяч) гривень за кожен випадок такого порушення як компенсацію за завдану репутаційну шкоду (відповідно до ст. 549 ЦК України).</p>
+        <p class="offer-doc-text">4.4. Сплата штрафу не звільняє Замовника від обов'язку видалити недостовірну інформацію.</p>
+      </div>
+
+      <div class="offer-doc-section">
+        <p class="offer-doc-num">5. ВИРІШЕННЯ СПОРІВ</p>
+        <p class="offer-doc-text">5.1. Усі спори та розбіжності вирішуються шляхом переговорів.</p>
+        <p class="offer-doc-text">5.2. У разі неможливості вирішення спору шляхом переговорів, спір підлягає розгляду у суді за встановленою законом підсудністю згідно з чинним законодавством України.</p>
+      </div>
+
+      <div class="offer-doc-section" style="border-bottom:none;">
+        <p class="offer-doc-num">6. ПРАВА ІНТЕЛЕКТУАЛЬНОЇ ВЛАСНОСТІ</p>
+        <p class="offer-doc-text">6.1. Усі авторські права на матеріали Курсу належать Виконавцю. Будь-яке копіювання, запис екрану або передача доступу третім особам заборонені та тягнуть за собою штраф у розмірі <strong style="color:#EAEAEA;">2000% від вартості Курсу</strong> та звернення до правоохоронних органів.</p>
+      </div>
+
+    </div>
+
+    <button class="btn modal-btn" onclick="closeOffer()" style="margin-top:20px;">
+      Зрозуміло, закрити
+    </button>
+
+  </div>
+</div>
+
+<style>
+.offer-modal-box {
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 24px;
+}
+.offer-doc-body {
+  overflow-y: auto;
+  flex: 1;
+  margin: 0 -4px;
+  padding: 0 4px;
+  scrollbar-width: thin;
+  scrollbar-color: #252B38 transparent;
+}
+.offer-doc-body::-webkit-scrollbar { width: 4px; }
+.offer-doc-body::-webkit-scrollbar-track { background: transparent; }
+.offer-doc-body::-webkit-scrollbar-thumb { background: #252B38; border-radius: 4px; }
+
+.offer-doc-section {
+  padding: 16px 0;
+  border-bottom: 1px solid #1E1E28;
+}
+.offer-doc-num {
+  font-size: 11px; font-weight: 800;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  color: #4D7CFE; margin-bottom: 10px;
+}
+.offer-doc-text {
+  font-size: 13px; color: #8888A0;
+  line-height: 1.65; margin-bottom: 8px;
+}
+.offer-doc-text:last-child { margin-bottom: 0; }
+</style>
+
+<script>
+function openOffer(e) {
+  if (e) e.preventDefault();
+  document.getElementById('offer-modal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeOffer() {
+  document.getElementById('offer-modal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeOffer(); closeOrder(); }
+});
 </script>
 
 </body>
