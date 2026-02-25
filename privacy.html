@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Політика конфіденційності — Гроші на стіл</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: #0F0F12;
+  color: #EAEAEA;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+a { text-decoration: none; color: inherit; }
+
+/* ── TOP BAR ─────────────────────────────────── */
+.top-bar {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(15,15,18,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid #1E1E28;
+  padding: 12px 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.btn-back {
+  display: flex; align-items: center; gap: 8px;
+  height: 44px; padding: 0 18px;
+  background: #1B1B22;
+  border: 1px solid #2A2A33;
+  border-radius: 10px;
+  font-size: 14px; font-weight: 600; color: #EAEAEA;
+  cursor: pointer; white-space: nowrap;
+  transition: background 0.2s, border-color 0.2s;
+}
+.btn-back:hover { background: #252530; border-color: #3A3A48; }
+.top-title {
+  font-size: 13px; font-weight: 700; color: #555570;
+  flex: 1; text-align: center;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* ── CONTENT ─────────────────────────────────── */
+.page-wrap {
+  max-width: 680px; margin: 0 auto; padding: 36px 20px;
+}
+.page-tag {
+  display: inline-block;
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: #4D7CFE;
+  background: rgba(77,124,254,0.1);
+  border: 1px solid rgba(77,124,254,0.2);
+  padding: 3px 10px; border-radius: 20px;
+  margin-bottom: 12px;
+}
+.page-title {
+  font-size: 24px; font-weight: 800; color: #fff;
+  margin-bottom: 6px; line-height: 1.2;
+}
+.page-sub {
+  font-size: 13px; color: #555570;
+  margin-bottom: 8px; line-height: 1.6;
+}
+.page-url {
+  font-size: 12px; color: #4D7CFE;
+  margin-bottom: 32px;
+  word-break: break-all;
+}
+
+.doc-section {
+  padding: 20px 0;
+  border-bottom: 1px solid #1A1A22;
+}
+.doc-section:last-child { border-bottom: none; }
+.doc-num {
+  font-size: 9px; font-weight: 800;
+  letter-spacing: 1px; text-transform: uppercase;
+  color: #4D7CFE; margin-bottom: 12px;
+}
+.doc-text {
+  font-size: 13px; color: #77778A;
+  line-height: 1.7; margin-bottom: 10px;
+}
+.doc-text:last-child { margin-bottom: 0; }
+.doc-list {
+  margin: 8px 0 10px 0;
+  padding: 0;
+  list-style: none;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.doc-list li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 13px; color: #77778A; line-height: 1.6;
+}
+.doc-list li::before {
+  content: '';
+  width: 5px; height: 5px;
+  background: #4D7CFE; border-radius: 50%;
+  margin-top: 8px; flex-shrink: 0;
+}
+
+/* ── BOTTOM BAR ──────────────────────────────── */
+.bottom-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: rgba(15,15,18,0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid #1E1E28;
+  padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
+}
+.bottom-back {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; height: 54px;
+  background: #1B1B22;
+  border: 1px solid #2A2A33;
+  border-radius: 12px;
+  font-size: 15px; font-weight: 600; color: #EAEAEA;
+  cursor: pointer; text-decoration: none;
+  transition: background 0.2s;
+}
+.bottom-back:hover { background: #252530; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <a href="index.html" class="btn-back">
+    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+    </svg>
+    До курсу
+  </a>
+  <span class="top-title">Політика конфіденційності</span>
+</div>
+
+<!-- CONTENT -->
+<div class="page-wrap">
+  <div class="page-tag">Юридичний документ</div>
+  <h1 class="page-title">Політика конфіденційності та захисту персональних даних</h1>
+  <p class="page-sub">Ця Політика діє для всієї інформації, яку Виконавець (ФОП [Твоє ПІБ]) може отримати про Користувача під час використання сайту:</p>
+  <p class="page-url">https://vladisgran.github.io/groshi1/</p>
+
+  <div class="doc-section">
+    <p class="doc-num">1. Які дані ми збираємо</p>
+    <p class="doc-text">1.1. Під час реєстрації на курс або здійснення оплати, Користувач надає наступні дані:</p>
+    <ul class="doc-list">
+      <li>Прізвище, Ім'я, По батькові</li>
+      <li>Контактний номер телефону</li>
+      <li>Адреса електронної пошти (e-mail)</li>
+      <li>Нікнейм у месенджерах (Telegram тощо)</li>
+    </ul>
+    <p class="doc-text">1.2. Сайт також може автоматично збирати технічні дані (IP-адреса, файли cookies, дані про браузер) для покращення роботи сервісу.</p>
+  </div>
+
+  <div class="doc-section">
+    <p class="doc-num">2. Мета збору даних</p>
+    <p class="doc-text">2.1. Персональні дані Користувача використовуються для:</p>
+    <ul class="doc-list">
+      <li>Ідентифікації Замовника для надання доступу до Курсу</li>
+      <li>Здійснення зворотного зв'язку (консультації, сповіщення про оновлення)</li>
+      <li>Обробки платежів через платіжні системи</li>
+      <li>Надсилання маркетингових матеріалів та спеціальних пропозицій (від яких Користувач може відмовитися в будь-який момент)</li>
+    </ul>
+  </div>
+
+  <div class="doc-section">
+    <p class="doc-num">3. Захист та передача даних</p>
+    <p class="doc-text">3.1. Виконавець вживає всіх необхідних організаційних та технічних заходів для захисту персональних даних від несанкціонованого доступу третіх осіб.</p>
+    <p class="doc-text">3.2. Передача даних третім особам здійснюється виключно:</p>
+    <ul class="doc-list">
+      <li>Для забезпечення роботи платіжних сервісів (LiqPay, WayForPay тощо)</li>
+      <li>На вимогу законодавства України у встановленому законом порядку</li>
+    </ul>
+  </div>
+
+  <div class="doc-section">
+    <p class="doc-num">4. Права користувача</p>
+    <p class="doc-text">4.1. Користувач має право:</p>
+    <ul class="doc-list">
+      <li>Знати, які саме дані про нього зберігаються</li>
+      <li>Вимагати видалення своїх даних із бази Виконавця</li>
+      <li>Відкликати згоду на обробку персональних даних, надіславши запит Виконавцю</li>
+    </ul>
+    <p class="doc-text" style="margin-top:10px;">Для реалізації своїх прав надішліть запит на: <a href="mailto:support@vladisgran.com" style="color:#4D7CFE;">support@vladisgran.com</a></p>
+  </div>
+
+  <div class="doc-section">
+    <p class="doc-num">5. Згода з умовами</p>
+    <p class="doc-text">5.1. Користувач підтверджує, що надання персональних даних під час оформлення замовлення є добровільною згодою на їх обробку згідно з цією Політикою.</p>
+    <p class="doc-text">5.2. Виконавець має право оновлювати Політику конфіденційності. Зміни вступають в силу з моменту їх публікації на сайті.</p>
+  </div>
+
+</div>
+
+<!-- BOTTOM BAR -->
+<div class="bottom-bar">
+  <a href="index.html" class="bottom-back">
+    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+    </svg>
+    Повернутись до курсу
+  </a>
+</div>
+
+</body>
+</html>
