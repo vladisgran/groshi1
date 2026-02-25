@@ -403,11 +403,12 @@ img { display: block; max-width: 100%; }
 /* ─────────────────────────────────────────────────── */
 #sticky-bar {
   position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
-  height: 70px;
+  height: auto;
+  min-height: 70px;
   background: #4D7CFE;
   display: flex; align-items: center; justify-content: center;
   box-shadow: 0 -5px 20px rgba(0,0,0,0.4);
-  padding-bottom: env(safe-area-inset-bottom);
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
 }
 #sticky-bar a {
   width: 100%; height: 100%;
@@ -505,7 +506,7 @@ footer a { color: #4D7CFE; }
 }
 
 @media (max-width: 767px) {
-  body { padding-bottom: 70px; }
+  body { padding-bottom: 90px; }
   .btn-desktop { max-width: 100%; }
   .desktop-only { display: none !important; }
 }
@@ -537,6 +538,7 @@ footer a { color: #4D7CFE; }
     <a href="#" onclick="openOrder(event)" class="btn btn-desktop anim-up d3 desktop-only">
       Купити за 599 грн →
     </a>
+    <p class="legal-note desktop-only" style="text-align:left;">Натискаючи на кнопку, ви погоджуєтесь з умовами <a href="offer.html" class="legal-link" target="_blank">Публічної оферти</a> та <a href="#" class="legal-link">Політики конфіденційності</a>.</p>
     <p class="hero-note anim-up d4 desktop-only">
       🔒 WayForPay · Доступ в Telegram-бот одразу після оплати
     </p>
@@ -598,6 +600,7 @@ footer a { color: #4D7CFE; }
 
     <div style="margin-top:28px;">
       <a href="#" onclick="openOrder(event)" class="btn btn-desktop">Хочу підвищення - Купити</a>
+      <p class="legal-note" style="text-align:center;">Натискаючи на кнопку, ви погоджуєтесь з умовами <a href="offer.html" class="legal-link" target="_blank">Публічної оферти</a> та <a href="#" class="legal-link">Політики конфіденційності</a>.</p>
     </div>
   </div>
 </section>
@@ -675,6 +678,7 @@ footer a { color: #4D7CFE; }
 
     <div style="margin-top:28px;">
       <a href="#" onclick="openOrder(event)" class="btn btn-desktop">Купити курс за 599 грн</a>
+      <p class="legal-note" style="text-align:center;">Натискаючи на кнопку, ви погоджуєтесь з умовами <a href="offer.html" class="legal-link" target="_blank">Публічної оферти</a> та <a href="#" class="legal-link">Політики конфіденційності</a>.</p>
     </div>
   </div>
 </section>
@@ -935,7 +939,10 @@ footer a { color: #4D7CFE; }
 
 <!-- ═══════════════════════ FIXED MOBILE BAR ═══════════════════════ -->
 <div id="sticky-bar">
-  <a href="#" onclick="openOrder(event)">Купити за 599 грн</a>
+  <div style="display:flex;flex-direction:column;width:100%;gap:4px;">
+    <a href="#" onclick="openOrder(event)" style="display:flex;align-items:center;justify-content:center;width:100%;height:44px;font-size:17px;font-weight:800;color:#fff;text-transform:uppercase;text-decoration:none;">Купити за 599 грн</a>
+    <p style="font-size:9px;color:rgba(255,255,255,0.35);text-align:center;line-height:1.3;">Натискаючи, ви погоджуєтесь з <a href="offer.html" target="_blank" style="color:rgba(255,255,255,0.5);text-decoration:underline;">офертою</a> та <a href="#" style="color:rgba(255,255,255,0.5);text-decoration:underline;">політикою</a></p>
+  </div>
 </div>
 
 <script>
