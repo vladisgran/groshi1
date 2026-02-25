@@ -347,6 +347,14 @@ img { display: block; max-width: 100%; }
 .sc-track { height: 5px; background: rgba(255,255,255,0.06); border-radius: 10px; overflow: hidden; }
 .sc-fill  { height: 100%; width: 73%; background: linear-gradient(90deg,#4D7CFE,#2F5DFF); border-radius: 10px; transition: width 1.5s ease; }
 
+@keyframes scBlink {
+  0%,100% { opacity: 1; color: #4D7CFE; }
+  40%      { opacity: 0; color: #FF4D4D; }
+  60%      { opacity: 0; color: #FF4D4D; }
+  80%      { opacity: 1; color: #FF4D4D; }
+}
+.sc-blink { animation: scBlink 0.7s ease; }
+
 /* ─────────────────────────────────────────────────── */
 /*  8. FAQ                                             */
 /* ─────────────────────────────────────────────────── */
@@ -830,8 +838,8 @@ footer a { color: #4D7CFE; }
 
       <div class="scarcity">
         <div class="sc-row">
-          <span>Місць за стартовою ціною: 73/100</span>
-          <span>Лишилось 27</span>
+          <span id="sc-label">Місць за стартовою ціною: <span id="sc-taken">163</span>/200</span>
+          <span id="sc-left">Лишилось 37</span>
         </div>
         <div class="sc-track"><div class="sc-fill" id="scFill" style="width:0%"></div></div>
       </div>
@@ -931,13 +939,10 @@ document.querySelectorAll('.faq-q').forEach(btn => {
     const item = btn.closest('.faq-item');
     const body = item.querySelector('.faq-body');
     const isOpen = item.classList.contains('open');
-
-    // close all
     document.querySelectorAll('.faq-item.open').forEach(el => {
       el.classList.remove('open');
       el.querySelector('.faq-body').style.maxHeight = '0';
     });
-
     if (!isOpen) {
       item.classList.add('open');
       body.style.maxHeight = body.scrollHeight + 'px';
@@ -956,16 +961,92 @@ const io = new IntersectionObserver(entries => {
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-// ── Scarcity bar animate on reveal ────────────
-const offerSection = document.querySelector('#offer');
-const fillEl = document.getElementById('scFill');
-const fillObs = new IntersectionObserver(entries => {
-  if (entries[0].isIntersecting) {
-    setTimeout(() => { fillEl.style.width = '73%'; }, 300);
-    fillObs.disconnect();
+// ── SCARCITY COUNTER ───────────────────────────
+(function() {
+  const TOTAL      = 200;
+  const START_TAKEN = 152; // first value user sees (48 left)
+  const MIN_LEFT   = 5;    // stop at 5 remaining
+  const INTERVAL   = 7000; // ms between decrements
+
+  const elTaken = document.getElementById('sc-taken');
+  const elLeft  = document.getElementById('sc-left');
+  const elFill  = document.getElementById('scFill');
+  const scarcity = document.querySelector('.scarcity');
+
+  if (!elTaken || !elLeft || !scarcity) return;
+
+  // ── Persist across sessions via localStorage ──
+  const STORAGE_KEY = 'sc_taken_v1';
+  let taken = parseInt(localStorage.getItem(STORAGE_KEY)) || START_TAKEN;
+  // safety clamp
+  if (taken < START_TAKEN) taken = START_TAKEN;
+  if (taken > TOTAL - MIN_LEFT) taken = TOTAL - MIN_LEFT;
+
+  function render(animate) {
+    const left = TOTAL - taken;
+    elTaken.textContent = taken;
+    elLeft.textContent  = 'Лишилось ' + left;
+    const pct = (taken / TOTAL) * 100;
+    elFill.style.width = pct + '%';
+
+    if (animate) {
+      // blink the "Лишилось N" text
+      elLeft.classList.remove('sc-blink');
+      void elLeft.offsetWidth; // reflow to restart animation
+      elLeft.classList.add('sc-blink');
+      elLeft.addEventListener('animationend', () => {
+        elLeft.classList.remove('sc-blink');
+      }, { once: true });
+    }
   }
-}, { threshold: 0.2 });
-if (offerSection) fillObs.observe(offerSection);
+
+  // Initial render without animation
+  render(false);
+
+  // ── Intersection Observer: run timer only when visible ──
+  let timer = null;
+
+  function startTimer() {
+    if (timer) return;
+    timer = setInterval(() => {
+      if (taken >= TOTAL - MIN_LEFT) {
+        clearInterval(timer);
+        timer = null;
+        return;
+      }
+      taken++;
+      localStorage.setItem(STORAGE_KEY, taken);
+      render(true);
+    }, INTERVAL);
+  }
+
+  function stopTimer() {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  const visObs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      startTimer();
+    } else {
+      stopTimer();
+    }
+  }, { threshold: 0.2 });
+
+  visObs.observe(scarcity);
+
+  // ── Also animate bar on first scroll into view ──
+  const fillObs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      const pct = (taken / TOTAL) * 100;
+      setTimeout(() => { elFill.style.width = pct + '%'; }, 300);
+      fillObs.disconnect();
+    }
+  }, { threshold: 0.2 });
+  fillObs.observe(scarcity);
+})();
 </script>
 
 </body>
