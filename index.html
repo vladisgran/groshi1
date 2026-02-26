@@ -534,6 +534,16 @@ footer a { color: #4D7CFE; }
   .hero-price.desktop-only { display: flex; }
 }
 .hero-note { margin-top: 14px; font-size: 12px; color: #444455; }
+.hero-hook {
+  font-size: 16px; color: #9A9AAA; line-height: 1.55;
+  margin-bottom: 24px; font-style: italic;
+}
+@media (min-width: 768px) { .hero-hook { font-size: 19px; } }
+.offer-deadline { padding: 0 24px 16px; }
+.offer-deadline-text {
+  font-size: 13px; color: #666680; line-height: 1.65;
+  border-top: 1px solid #1E1E28; padding-top: 16px;
+}
 </style>
 </head>
 <body>
@@ -550,13 +560,16 @@ footer a { color: #4D7CFE; }
       Як отримати підвищення,<br>
       працюючи головою, а не 24/7
     </p>
+    <p class="hero-hook anim-up d2">
+      Рік уже думаєш про цю розмову. Вона не станеться сама — але вистачить однієї правильної фрази.
+    </p>
     <!-- shown only on desktop -->
     <div class="hero-price anim-up d3 desktop-only">
       <span class="price-main">599 грн</span>
       <span class="price-old">4 197 грн</span>
     </div>
     <a href="#" onclick="openOrder(event)" class="btn btn-desktop anim-up d3 desktop-only">
-      Купити за 599 грн →
+      Подивитись, що всередині
     </a>
     <p class="legal-note desktop-only" style="text-align:left;">Натискаючи на кнопку, ви погоджуєтесь з умовами <a href="offer.html" class="legal-link" target="_blank">Публічної оферти</a> та <a href="privacy.html" class="legal-link" target="_blank">Політики конфіденційності</a>.</p>
     <p class="hero-note anim-up d4 desktop-only">
@@ -577,7 +590,7 @@ footer a { color: #4D7CFE; }
       <span class="price-old">4 197 грн</span>
     </div>
     <a href="#" onclick="openOrder(event)" class="btn anim-up d3">
-      Купити за 599 грн →
+      Подивитись, що всередині
     </a>
     <p style="margin-top:12px; font-size:12px; color:#444455;">
       🔒 WayForPay · Доступ в Telegram-бот одразу після оплати
@@ -619,7 +632,7 @@ footer a { color: #4D7CFE; }
     </div>
 
     <div style="margin-top:28px;">
-      <a href="#" onclick="openOrder(event)" class="btn btn-desktop">Хочу підвищення - Купити</a>
+      <a href="#" onclick="openOrder(event)" class="btn btn-desktop">Хочу нарешті отримати своє</a>
       <p class="legal-note" style="text-align:center;">Натискаючи на кнопку, ви погоджуєтесь з умовами <a href="offer.html" class="legal-link" target="_blank">Публічної оферти</a> та <a href="privacy.html" class="legal-link" target="_blank">Політики конфіденційності</a>.</p>
     </div>
   </div>
@@ -697,7 +710,7 @@ footer a { color: #4D7CFE; }
     </div>
 
     <div style="margin-top:28px;">
-      <a href="#" onclick="openOrder(event)" class="btn btn-desktop">Купити курс за 599 грн</a>
+      <a href="#" onclick="openOrder(event)" class="btn btn-desktop">Взяти курс за 599 грн</a>
       <p class="legal-note" style="text-align:center;">Натискаючи на кнопку, ви погоджуєтесь з умовами <a href="offer.html" class="legal-link" target="_blank">Публічної оферти</a> та <a href="privacy.html" class="legal-link" target="_blank">Політики конфіденційності</a>.</p>
     </div>
   </div>
@@ -720,7 +733,7 @@ footer a { color: #4D7CFE; }
           </div>
           <div class="review-badge">+7 000 грн</div>
         </div>
-        <p class="review-text">Зробила все по скрипту з уроку 2. Через 11 днів - підвищення. Ніякої магії, просто правильні слова в правильний момент.</p>
+        <p class="review-text">«Я відкладала цю розмову місяців вісім. Буквально - виходила з кабінету боса з думкою "не сьогодні". Купила курс більше від відчаю, ніж від віри. На другому уроці зрозуміла, чому мої попередні спроби провалювались - я просила, а не пропонувала. Зробила все по скрипту, слово в слово, навіть трохи незручно було. Через 11 днів шеф сам підняв тему зарплати. Я не вірю в магію, але тут дійсно спрацювало.»</p>
       </div>
 
       <div class="review-card">
@@ -728,12 +741,12 @@ footer a { color: #4D7CFE; }
           <div class="review-avatar" style="background:rgba(96,165,250,0.15); color:#60A5FA;">Д</div>
           <div>
             <p class="review-name">Дмитро К.</p>
-            <p class="review-role">IT-спеціаліст, Харків</p>
+            <p class="review-role">Middle Developer, Харків</p>
             <p class="review-stars">★★★★★</p>
           </div>
           <div class="review-badge">+12 000 грн</div>
         </div>
-        <p class="review-text">Шеф сам запропонував переглянути ставку після того, як я застосував техніку якоря з уроку 4. Зовсім не те, що чекав.</p>
+        <p class="review-text">«Чесно, купував зі скептицизмом - думав, ну що мені розкажуть нового. Я і так непогано заробляю. Але застряг на одній позиції два роки, і це дратувало. Після четвертого уроку спробував техніку "якоря" - не очікував нічого особливого. Шеф мовчав хвилин п'ять, потім каже: "Давай перегляне HR твій грейд". Я навіть не встиг дійти до скрипта з шостого уроку.»</p>
       </div>
 
       <div class="review-card">
@@ -746,7 +759,7 @@ footer a { color: #4D7CFE; }
           </div>
           <div class="review-badge">+15%</div>
         </div>
-        <p class="review-text">Не вірила, що у нас взагалі можна щось отримати. Але спробувала - і отримала. Курс окупився ще в перший місяць.</p>
+        <p class="review-text">«У нас компанія стара, процеси радянські, і я була майже впевнена, що нічого не вийде. Але грошей хотілося. Курс пройшла за три дні - більше з цікавості. Потім ще тиждень готувалась до розмови, бо боялась. Результат - 15% з наступного місяця. Не казка, але курс окупився тричі вже в перші два місяці. Жалкую тільки, що раніше не спробувала.»</p>
       </div>
     </div>
     <p style="font-size:11px; color:#444460; margin-top:16px; line-height:1.5;">* Кейси є реальними історіями успіху, проте не є обіцянкою аналогічного результату. Результати навчання є індивідуальними та залежать від особистих зусиль кожного учня.</p>
@@ -767,7 +780,7 @@ footer a { color: #4D7CFE; }
 
       <div style="display:flex; flex-direction:column; gap:14px; margin-bottom:24px; text-align:left;">
         <p class="author-bio" style="margin-bottom:0;">
-          Я не вчу просити більше. Я щодня приймаю рішення - кому підвищувати зарплату, а кому відмовляти.
+          Щотижня я сиджу навпроти людей, які просять підвищення. Хтось отримує його одразу. Хтось іде ні з чим - і навіть не розуміє чому. Я бачу цю різницю зсередини: я керівник, який ухвалює фінальне рішення. До цього я сам сидів по той бік столу - і теж не завжди розумів, як це працює. Поки не розібрався.
         </p>
         <p class="author-bio" style="margin-bottom:0;">
           За плечима - понад <strong style="color:#EAEAEA;">300 переговорів про підвищення</strong> з обох сторін столу. Я був співробітником, який доводив свою цінність. І я керівник, який оцінює ризики, рахує економіку та ухвалює фінальне рішення.
@@ -891,13 +904,10 @@ footer a { color: #4D7CFE; }
           </div>
         </div>
       </div>
+      </div>
 
-      <div class="scarcity">
-        <div class="sc-row">
-          <span id="sc-label">Місць за стартовою ціною: <span id="sc-taken">163</span>/200</span>
-          <span id="sc-left">Лишилось 37</span>
-        </div>
-        <div class="sc-track"><div class="sc-fill" id="scFill" style="width:0%"></div></div>
+      <div class="offer-deadline">
+        <p class="offer-deadline-text">Зараз курс коштує 599 грн — це стартова ціна першого запуску. Коли назбирається достатньо відгуків, ціна зросте. Якщо ти тут зараз — це твій момент увійти дешевше.</p>
       </div>
 
       <div class="offer-price-box">
@@ -926,6 +936,13 @@ footer a { color: #4D7CFE; }
           <svg class="faq-chevron" fill="none" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
         </button>
         <div class="faq-body"><div class="faq-body-inner">У курсі є сценарій і на цей випадок - як зберегти обличчя і спробувати через 30 днів. Але більшість учнів чують «давай обговоримо» або «добре» вже після першої розмови.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          Навіщо платити, якщо є YouTube і безкоштовні статті?
+          <svg class="faq-chevron" fill="none" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">YouTube дасть тобі п'ять корисних думок із двадцяти різних відео - і ти підеш їх "обдумувати". Тут інше: система з 14 конкретних днів, готові скрипти під твою ситуацію (не "переговори взагалі", а розмова з твоїм шефом, у твоїй компанії), і логіка керівника, якої в жодному ролику нема - бо там зазвичай говорять з боку співробітника. Вільний контент хороший для натхнення. Цей курс - для результату.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">
@@ -968,7 +985,7 @@ footer a { color: #4D7CFE; }
     <p class="final-main">599 грн</p>
     <div style="max-width:400px; margin:0 auto;">
       <a href="#" onclick="openOrder(event)" class="btn btn-lg" style="font-size:18px; margin-bottom:12px;">
-        🚀 Купити зараз за 599 грн
+        Починаю — доступ одразу
       </a>
       <p style="font-size:12px; color:#444455; text-align:center;">🔒 WayForPay · Миттєвий доступ в Telegram</p>
       <p class="legal-note" style="text-align:center;">Натискаючи на кнопку, ви погоджуєтесь з умовами <a href="offer.html" class="legal-link" target="_blank">Публічної оферти</a> та <a href="privacy.html" class="legal-link" target="_blank">Політики конфіденційності</a>.</p>
@@ -1025,92 +1042,6 @@ const io = new IntersectionObserver(entries => {
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-// ── SCARCITY COUNTER ───────────────────────────
-(function() {
-  const TOTAL      = 200;
-  const START_TAKEN = 152; // first value user sees (48 left)
-  const MIN_LEFT   = 5;    // stop at 5 remaining
-  const INTERVAL   = 7000; // ms between decrements
-
-  const elTaken = document.getElementById('sc-taken');
-  const elLeft  = document.getElementById('sc-left');
-  const elFill  = document.getElementById('scFill');
-  const scarcity = document.querySelector('.scarcity');
-
-  if (!elTaken || !elLeft || !scarcity) return;
-
-  // ── Persist across sessions via localStorage ──
-  const STORAGE_KEY = 'sc_taken_v1';
-  let taken = parseInt(localStorage.getItem(STORAGE_KEY)) || START_TAKEN;
-  // safety clamp
-  if (taken < START_TAKEN) taken = START_TAKEN;
-  if (taken > TOTAL - MIN_LEFT) taken = TOTAL - MIN_LEFT;
-
-  function render(animate) {
-    const left = TOTAL - taken;
-    elTaken.textContent = taken;
-    elLeft.textContent  = 'Лишилось ' + left;
-    const pct = (taken / TOTAL) * 100;
-    elFill.style.width = pct + '%';
-
-    if (animate) {
-      // blink the "Лишилось N" text
-      elLeft.classList.remove('sc-blink');
-      void elLeft.offsetWidth; // reflow to restart animation
-      elLeft.classList.add('sc-blink');
-      elLeft.addEventListener('animationend', () => {
-        elLeft.classList.remove('sc-blink');
-      }, { once: true });
-    }
-  }
-
-  // Initial render without animation
-  render(false);
-
-  // ── Intersection Observer: run timer only when visible ──
-  let timer = null;
-
-  function startTimer() {
-    if (timer) return;
-    timer = setInterval(() => {
-      if (taken >= TOTAL - MIN_LEFT) {
-        clearInterval(timer);
-        timer = null;
-        return;
-      }
-      taken++;
-      localStorage.setItem(STORAGE_KEY, taken);
-      render(true);
-    }, INTERVAL);
-  }
-
-  function stopTimer() {
-    if (timer) {
-      clearInterval(timer);
-      timer = null;
-    }
-  }
-
-  const visObs = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) {
-      startTimer();
-    } else {
-      stopTimer();
-    }
-  }, { threshold: 0.2 });
-
-  visObs.observe(scarcity);
-
-  // ── Also animate bar on first scroll into view ──
-  const fillObs = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) {
-      const pct = (taken / TOTAL) * 100;
-      setTimeout(() => { elFill.style.width = pct + '%'; }, 300);
-      fillObs.disconnect();
-    }
-  }, { threshold: 0.2 });
-  fillObs.observe(scarcity);
-})();
 </script>
 
 <!-- ═══════════════════════ ORDER MODAL ═══════════════════════ -->
