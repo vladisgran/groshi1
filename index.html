@@ -286,11 +286,19 @@ img { display: block; max-width: 100%; }
   max-width: 680px; margin: 0 auto;
 }
 .author-photo-wrap {
-  width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 20px;
-  background: linear-gradient(135deg, rgba(77,124,254,0.3), rgba(47,93,255,0.1));
-  border: 2px solid rgba(77,124,254,0.35);
+  width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 20px;
+  border: 2px solid rgba(77,124,254,0.4);
+  box-shadow: 0 0 30px rgba(77,124,254,0.2), 0 0 0 4px rgba(77,124,254,0.08);
+  overflow: hidden;
   display: flex; align-items: center; justify-content: center;
-  font-size: 42px;
+  background: #141419;
+}
+.author-photo-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
 }
 .author-name { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
 .author-sub  { font-size: 14px; color: #4D7CFE; margin-bottom: 24px; }
@@ -750,7 +758,9 @@ footer a { color: #4D7CFE; }
   <div class="container">
     <div class="s-label" style="display:block; text-align:center;">👤 Автор</div>
     <div class="author-card">
-      <div class="author-photo-wrap">💼</div>
+      <div class="author-photo-wrap">
+        <img src="author.png" alt="Владислав Гранкін" loading="lazy">
+      </div>
       <p class="author-name">Владислав Гранкін</p>
       <p class="author-sub">Керівник, який приймає рішення про підвищення</p>
       <p style="font-size:12px; color:#444455; margin-bottom:24px;">Авторська програма з передачі особистого досвіду</p>
