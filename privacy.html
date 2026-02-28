@@ -289,7 +289,7 @@ a { text-decoration: none; color: inherit; }
   </div>
 
 
-  <div style="padding-top:20px; border-top:1px solid #1A1A22; margin-top:4px;"><p class="fop-info">Виконавець: ФОП Журак Тамара Євгеніївна &nbsp;·&nbsp; Запис ЄДР: №2010350000000980026 від 27.02.2026 &nbsp;·&nbsp; КВЕД: 85.59 &nbsp;·&nbsp; Адреса: 65042, Одеська обл., м. Одеса, пров. Чорноморський 10/10 &nbsp;·&nbsp; granbuss@gmail.com</p></div>
+  <div style="padding-top:20px; border-top:1px solid #1A1A22; margin-top:4px;"><p class="fop-info">Виконавець: ФОП Журак Тамара Євгеніївна &nbsp;·&nbsp; Запис ЄДР: №2010350000000980026 від 27.02.2026 &nbsp;·&nbsp; КВЕД: 85.59 &nbsp;·&nbsp; Адреса: 65042, Одеська обл., м. Одеса, пров. Чорноморський 10/10 &nbsp;·&nbsp; <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="37504556595542444477505a565e5b1954585a">[email&#160;protected]</a></p></div>
 </div>
 
 <!-- STICKY BOTTOM BAR -->
@@ -350,30 +350,167 @@ a { text-decoration: none; color: inherit; }
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-const WAYFORPAY_URL = 'https://wayforpay.com';
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── WAYFORPAY PAYMENT ─────────────────────────
+const WFP = {
+  merchantAccount:    'vladisgran_github_io',
+  merchantDomainName: 'vladisgran.github.io',
+  merchantSecretKey:  'ca57272835b4252fa56b7d9419e2aedaa742ef6a',
+  amount:             '599',
+  currency:           'UAH',
+  productName:        'Гроші на стіл — онлайн-курс',
+  productCount:       '1',
+  productPrice:       '599',
+  returnUrl:          'https://groshi-na-stil-bot.tg.pulse.is/',
+  serviceUrl:         'https://vladisgran.github.io/groshi1/',
+  language:           'UA',
+};
+
+// HMAC-MD5 via SubtleCrypto (browser native)
+async function hmacMd5(message, key) {
+  // SubtleCrypto doesn't support MD5 natively — use manual impl
+  return md5HmacHex(key, message);
+}
+
+// Pure-JS MD5 HMAC (no external libs)
+function md5HmacHex(key, message) {
+  const keyBytes   = strToBytes(key);
+  const msgBytes   = strToBytes(message);
+  const blockSize  = 64;
+  let k = keyBytes.length > blockSize ? md5Bytes(keyBytes) : keyBytes;
+  while (k.length < blockSize) k.push(0);
+  const iPad = k.map(b => b ^ 0x36);
+  const oPad = k.map(b => b ^ 0x5C);
+  const inner = md5Bytes([...iPad, ...msgBytes]);
+  return bytesToHex(md5Bytes([...oPad, ...inner]));
+}
+
+function strToBytes(str) {
+  const bytes = [];
+  for (let i = 0; i < str.length; i++) {
+    const code = str.charCodeAt(i);
+    if (code < 128) { bytes.push(code); }
+    else if (code < 2048) { bytes.push((code >> 6) | 192, (code & 63) | 128); }
+    else { bytes.push((code >> 12) | 224, ((code >> 6) & 63) | 128, (code & 63) | 128); }
+  }
+  return bytes;
+}
+
+function bytesToHex(bytes) {
+  return bytes.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+function md5Bytes(inputBytes) {
+  let b = [...inputBytes];
+  const origLen = b.length * 8;
+  b.push(0x80);
+  while (b.length % 64 !== 56) b.push(0);
+  for (let i = 0; i < 8; i++) b.push((origLen >>> (i * 8)) & 0xFF);
+  const T = Array.from({length: 64}, (_, i) => Math.floor(Math.abs(Math.sin(i + 1)) * 4294967296) >>> 0);
+  const s = [7,12,17,22,7,12,17,22,7,12,17,22,7,12,17,22,5,9,14,20,5,9,14,20,5,9,14,20,5,9,14,20,4,11,16,23,4,11,16,23,4,11,16,23,4,11,16,23,6,10,15,21,6,10,15,21,6,10,15,21,6,10,15,21];
+  let [a0,b0,c0,d0] = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476];
+  for (let i = 0; i < b.length; i += 64) {
+    const M = Array.from({length: 16}, (_, j) => (b[i+j*4]|(b[i+j*4+1]<<8)|(b[i+j*4+2]<<16)|(b[i+j*4+3]<<24)) >>> 0);
+    let [A, B, C, D] = [a0, b0, c0, d0];
+    for (let j = 0; j < 64; j++) {
+      let F, g;
+      if (j < 16)      { F = (B & C) | (~B & D); g = j; }
+      else if (j < 32) { F = (D & B) | (~D & C); g = (5*j+1) % 16; }
+      else if (j < 48) { F = B ^ C ^ D;           g = (3*j+5) % 16; }
+      else             { F = C ^ (B | ~D);         g = (7*j)   % 16; }
+      F = (F + A + T[j] + M[g]) >>> 0;
+      A = D; D = C; C = B;
+      B = (B + ((F << s[j]) | (F >>> (32 - s[j])))) >>> 0;
+    }
+    a0 = (a0 + A) >>> 0; b0 = (b0 + B) >>> 0;
+    c0 = (c0 + C) >>> 0; d0 = (d0 + D) >>> 0;
+  }
+  const res = [];
+  [a0,b0,c0,d0].forEach(v => { for (let i=0;i<4;i++) res.push((v>>>(i*8))&0xFF); });
+  return res;
+}
+
+async function buildWfpForm(clientData) {
+  const orderRef  = 'GNS-' + Date.now();
+  const orderDate = Math.floor(Date.now() / 1000).toString();
+  const sigString = [
+    WFP.merchantAccount,
+    WFP.merchantDomainName,
+    orderRef,
+    orderDate,
+    WFP.amount,
+    WFP.currency,
+    WFP.productName,
+    WFP.productCount,
+    WFP.productPrice,
+  ].join(';');
+  const signature = md5HmacHex(WFP.merchantSecretKey, sigString);
+
+  const form = document.createElement('form');
+  form.method  = 'POST';
+  form.action  = 'https://secure.wayforpay.com/pay';
+  form.charset = 'utf-8';
+  form.style.display = 'none';
+
+  const fields = {
+    merchantAccount:    WFP.merchantAccount,
+    merchantAuthType:   'SimpleSignature',
+    merchantDomainName: WFP.merchantDomainName,
+    merchantSignature:  signature,
+    orderReference:     orderRef,
+    orderDate:          orderDate,
+    amount:             WFP.amount,
+    currency:           WFP.currency,
+    orderTimeout:       '49000',
+    returnUrl:          WFP.returnUrl,
+    serviceUrl:         WFP.serviceUrl,
+    language:           WFP.language,
+    clientFirstName:    clientData.firstName,
+    clientLastName:     clientData.lastName,
+    clientEmail:        clientData.email,
+    clientPhone:        clientData.phone,
+    'productName[]':    WFP.productName,
+    'productPrice[]':   WFP.productPrice,
+    'productCount[]':   WFP.productCount,
+  };
+  Object.entries(fields).forEach(([name, value]) => {
+    const input = document.createElement('input');
+    input.type  = 'hidden';
+    input.name  = name;
+    input.value = value;
+    form.appendChild(input);
+  });
+  document.body.appendChild(form);
+  form.submit();
+}
 
 function openOrder(e) {
   if (e) e.preventDefault();
   const modal = document.getElementById('order-modal');
   modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
-  setTimeout(() => document.getElementById('f-name').focus(), 350);
+  setTimeout(() => { const n = document.getElementById('f-name'); if(n) n.focus(); }, 350);
 }
+
 function closeOrder() {
-  document.getElementById('order-modal').style.display = 'none';
+  const modal = document.getElementById('order-modal');
+  modal.style.display = 'none';
   document.body.style.overflow = '';
 }
+
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeOrder();
 });
+
 function validate() {
   let ok = true;
   const name  = document.getElementById('f-name');
   const phone = document.getElementById('f-phone');
   const email = document.getElementById('f-email');
   [name, phone, email].forEach(el => el.classList.remove('error'));
-  ['err-name','err-phone','err-email'].forEach(id => { document.getElementById(id).textContent = ''; });
+  ['err-name','err-phone','err-email'].forEach(id => {
+    document.getElementById(id).textContent = '';
+  });
   if (name.value.trim().length < 2) {
     name.classList.add('error');
     document.getElementById('err-name').textContent = "Введіть ім'я та прізвище";
@@ -394,8 +531,25 @@ function validate() {
 function submitOrder(e) {
   e.preventDefault();
   if (!validate()) return;
-  const name  = document.getElementById('f-name').value.trim();
-  const phone = document.getElementById('f-phone').value.trim();
-  const email = document.getElementById('f-email').value.trim();
-  const params = new URLSearchParams({
-    clientFi
+
+  const fullName = document.getElementById('f-name').value.trim();
+  const parts    = fullName.split(' ');
+  const btn = document.querySelector('.modal-btn');
+  btn.textContent = 'Перехід до оплати...';
+  btn.disabled = true;
+
+  buildWfpForm({
+    firstName: parts[0] || fullName,
+    lastName:  parts.slice(1).join(' ') || '-',
+    phone:     document.getElementById('f-phone').value.trim().replace(/\D/g,''),
+    email:     document.getElementById('f-email').value.trim(),
+  }).catch(() => {
+    btn.textContent = '💳 Перейти до оплати';
+    btn.disabled = false;
+  });
+}
+
+</script>
+
+</body>
+</html>
