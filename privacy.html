@@ -211,6 +211,11 @@ a { text-decoration: none; color: inherit; }
 .modal-btn:hover { box-shadow: 0 4px 30px rgba(77,124,254,0.6); }
 .modal-legal { font-size: 11px; color: #44445A; text-align: center; margin-top: 10px; line-height: 1.5; }
 .modal-legal a { color: #4D7CFE; text-decoration: underline; text-underline-offset: 2px; }
+.fop-info {
+  font-size: 10px; color: #2E2E3A;
+  line-height: 1.6; text-align: center;
+  margin-top: 8px;
+}
 </style>
 </head>
 <body>
@@ -230,7 +235,7 @@ a { text-decoration: none; color: inherit; }
 <div class="page-wrap">
   <div class="page-tag">Юридичний документ</div>
   <h1 class="page-title">Політика конфіденційності та захисту персональних даних</h1>
-  <p class="page-sub">Ця Політика діє для всієї інформації, яку Виконавець (ФОП [Твоє ПІБ]) може отримати про Користувача під час використання сайту:</p>
+  <p class="page-sub">Ця Політика діє для всієї інформації, яку Виконавець (ФОП Журак Тамара Євгеніївна) може отримати про Користувача під час використання сайту:</p>
   <p class="page-url">https://vladisgran.github.io/groshi1/</p>
 
   <div class="doc-section">
@@ -274,7 +279,7 @@ a { text-decoration: none; color: inherit; }
       <li>Вимагати видалення своїх даних із бази Виконавця</li>
       <li>Відкликати згоду на обробку персональних даних, надіславши запит Виконавцю</li>
     </ul>
-    <p class="doc-text" style="margin-top:10px;">Для реалізації своїх прав надішліть запит на: <a href="mailto:support@vladisgran.com" style="color:#4D7CFE;">support@vladisgran.com</a></p>
+    <p class="doc-text" style="margin-top:10px;">Для реалізації своїх прав надішліть запит на: <a href="/cdn-cgi/l/email-protection#0e7d7b7e7e617c7a4e78626f6a677d697c6f60206d6163" style="color:#4D7CFE;"><span class="__cf_email__" data-cfemail="61121411110e131521170d000508120613000f4f020e0c">[email&#160;protected]</span></a></p>
   </div>
 
   <div class="doc-section">
@@ -283,6 +288,8 @@ a { text-decoration: none; color: inherit; }
     <p class="doc-text">5.2. Виконавець має право оновлювати Політику конфіденційності. Зміни вступають в силу з моменту їх публікації на сайті.</p>
   </div>
 
+
+  <div style="padding-top:20px; border-top:1px solid #1A1A22; margin-top:4px;"><p class="fop-info">Виконавець: ФОП Журак Тамара Євгеніївна &nbsp;·&nbsp; Запис ЄДР: №2010350000000980026 від 27.02.2026 &nbsp;·&nbsp; КВЕД: 85.59 &nbsp;·&nbsp; Адреса: 65042, Одеська обл., м. Одеса, пров. Чорноморський 10/10 &nbsp;·&nbsp; granbuss@gmail.com</p></div>
 </div>
 
 <!-- STICKY BOTTOM BAR -->
@@ -343,7 +350,7 @@ a { text-decoration: none; color: inherit; }
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const WAYFORPAY_URL = 'https://wayforpay.com';
 
 function openOrder(e) {
@@ -391,14 +398,4 @@ function submitOrder(e) {
   const phone = document.getElementById('f-phone').value.trim();
   const email = document.getElementById('f-email').value.trim();
   const params = new URLSearchParams({
-    clientFirstName: name.split(' ')[0] || name,
-    clientLastName:  name.split(' ').slice(1).join(' ') || '',
-    clientPhone: phone,
-    clientEmail: email,
-  });
-  window.location.href = WAYFORPAY_URL + '?' + params.toString();
-}
-</script>
-
-</body>
-</html>
+    clientFi
